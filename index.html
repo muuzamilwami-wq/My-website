@@ -62,3 +62,73 @@
 
 </body>
   </html>
+<div class="box">
+  <h2>Sign Up</h2>
+
+  <input id="phone" type="tel" placeholder="Enter phone number">
+
+  <button id="sendBtn" onclick="sendOTP()">Send OTP</button>
+
+  <p id="timer"></p>
+
+  <input id="otp" type="text" placeholder="Enter OTP" maxlength="6">
+
+  <button onclick="verifyOTP()">Verify OTP</button>
+
+  <p id="message"></p>
+</div>
+
+<script>
+let seconds = 7;
+let timer;
+
+function sendOTP() {
+  const phone = document.getElementById("phone").value.trim();
+
+  if (!phone) {
+    document.getElementById("message").innerText =
+      "Please enter your phone number.";
+    return;
+  }
+
+  const btn = document.getElementById("sendBtn");
+  btn.disabled = true;
+
+  // Your backend should send the real SMS here.
+  document.getElementById("message").innerText =
+    "OTP request sent.";
+
+  seconds = 7;
+  document.getElementById("timer").innerText =
+    "Wait " + seconds + " seconds";
+
+  clearInterval(timer);
+
+  timer = setInterval(() => {
+    seconds--;
+
+    document.getElementById("timer").innerText =
+      seconds > 0 ? "Wait " + seconds + " seconds" : "";
+
+    if (seconds <= 0) {
+      clearInterval(timer);
+      btn.disabled = false;
+      btn.innerText = "Send OTP Again";
+    }
+  }, 1000);
+}
+
+function verifyOTP() {
+  const otp = document.getElementById("otp").value.trim();
+
+  if (otp.length !== 6) {
+    document.getElementById("message").innerText =
+      "Enter the 6-digit OTP.";
+    return;
+  }
+
+  // Real verification must happen on your backend.
+  document.getElementById("message").innerText =
+    "OTP verification must be connected to your server.";
+}
+</script>
