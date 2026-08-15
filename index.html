@@ -1,98 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Website</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #111827;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-    }
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
 
-    .container {
-      max-width: 500px;
-      margin: 45px auto;
-      padding: 20px;
-    }
+.container{
+  max-width:520px;
+  margin:40px auto;
+  padding:20px;
+}
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.08);
-    }
+.card{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 5px 25px rgba(0,0,0,.08);
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 16px;
-      background: white;
-    }
+input,select{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  font-size:16px;
+  background:white;
+}
 
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: 0;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:0;
+  border-radius:9px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
+button:disabled{
+  opacity:.5;
+}
 
-    .hidden {
-      display: none;
-    }
+.hidden{
+  display:none;
+}
 
-    .link {
-      color: #2563eb;
-      cursor: pointer;
-      margin-top: 15px;
-      text-align: center;
-    }
+.link{
+  color:#2563eb;
+  cursor:pointer;
+  margin-top:18px;
+}
 
-    #message {
-      min-height: 25px;
-      margin-top: 15px;
-      text-align: center;
-    }
+#message{
+  min-height:25px;
+  margin-top:15px;
+  word-break:break-word;
+}
 
-    #timer {
-      text-align: center;
-      color: #555;
-    }
+#timer{
+  text-align:center;
+  color:#555;
+}
 
-    #recaptcha-container {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-    }
-  </style>
+#recaptcha-container{
+  margin-top:10px;
+}
+
+.country-row{
+  display:flex;
+  gap:8px;
+}
+
+.country-row select{
+  width:48%;
+}
+
+.country-row input{
+  width:52%;
+}
+</style>
 </head>
 
 <body>
@@ -104,45 +110,260 @@
 
 <div class="container">
 
-  <!-- HOME -->
-  <div class="card" id="home">
+<!-- HOME -->
+<div class="card" id="home">
+  <h2>Welcome</h2>
+  <p>Get started with your account.</p>
 
-    <h2>Welcome</h2>
+  <button onclick="showAuth()">
+    Get Started
+  </button>
+</div>
 
-    <p>Get started with your account.</p>
 
-    <button onclick="showAuth()">
-      Get Started
-    </button>
+<!-- SIGN UP / LOGIN -->
+<div class="card hidden" id="auth">
 
+  <h2 id="authTitle">Sign Up</h2>
+
+  <div id="nameBox">
+    <input
+      id="name"
+      type="text"
+      placeholder="Full name"
+    >
   </div>
 
+  <div class="country-row">
 
-  <!-- LOGIN / SIGNUP -->
-  <div class="card hidden" id="auth">
-
-    <h2 id="authTitle">Sign Up</h2>
-
-    <!-- NAME -->
-    <div id="nameBox">
-
-      <input
-        id="name"
-        type="text"
-        placeholder="Full name"
-        autocomplete="name"
-      >
-
-    </div>
-
-
-    <!-- COUNTRY -->
     <select id="country">
-      <!-- Countries will be added automatically -->
+
+      <option value="+92">🇵🇰 Pakistan (+92)</option>
+      <option value="+62">🇮🇩 Indonesia (+62)</option>
+      <option value="+221">🇸🇳 Senegal (+221)</option>
+      <option value="+218">🇱🇾 Libya (+218)</option>
+
+      <option value="+93">🇦🇫 Afghanistan (+93)</option>
+      <option value="+355">🇦🇱 Albania (+355)</option>
+      <option value="+213">🇩🇿 Algeria (+213)</option>
+      <option value="+376">🇦🇩 Andorra (+376)</option>
+      <option value="+244">🇦🇴 Angola (+244)</option>
+      <option value="+1264">🇦🇮 Anguilla (+1264)</option>
+      <option value="+1268">🇦🇬 Antigua and Barbuda (+1268)</option>
+      <option value="+54">🇦🇷 Argentina (+54)</option>
+      <option value="+374">🇦🇲 Armenia (+374)</option>
+      <option value="+297">🇦🇼 Aruba (+297)</option>
+      <option value="+61">🇦🇺 Australia (+61)</option>
+      <option value="+43">🇦🇹 Austria (+43)</option>
+      <option value="+994">🇦🇿 Azerbaijan (+994)</option>
+
+      <option value="+1242">🇧🇸 Bahamas (+1242)</option>
+      <option value="+973">🇧🇭 Bahrain (+973)</option>
+      <option value="+880">🇧🇩 Bangladesh (+880)</option>
+      <option value="+1246">🇧🇧 Barbados (+1246)</option>
+      <option value="+375">🇧🇾 Belarus (+375)</option>
+      <option value="+32">🇧🇪 Belgium (+32)</option>
+      <option value="+501">🇧🇿 Belize (+501)</option>
+      <option value="+229">🇧🇯 Benin (+229)</option>
+      <option value="+1441">🇧🇲 Bermuda (+1441)</option>
+      <option value="+975">🇧🇹 Bhutan (+975)</option>
+      <option value="+591">🇧🇴 Bolivia (+591)</option>
+      <option value="+387">🇧🇦 Bosnia and Herzegovina (+387)</option>
+      <option value="+267">🇧🇼 Botswana (+267)</option>
+      <option value="+55">🇧🇷 Brazil (+55)</option>
+      <option value="+673">🇧🇳 Brunei (+673)</option>
+      <option value="+359">🇧🇬 Bulgaria (+359)</option>
+      <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+      <option value="+257">🇧🇮 Burundi (+257)</option>
+
+      <option value="+238">🇨🇻 Cabo Verde (+238)</option>
+      <option value="+855">🇰🇭 Cambodia (+855)</option>
+      <option value="+237">🇨🇲 Cameroon (+237)</option>
+      <option value="+1">🇨🇦 Canada (+1)</option>
+      <option value="+236">🇨🇫 Central African Republic (+236)</option>
+      <option value="+235">🇹🇩 Chad (+235)</option>
+      <option value="+56">🇨🇱 Chile (+56)</option>
+      <option value="+86">🇨🇳 China (+86)</option>
+      <option value="+57">🇨🇴 Colombia (+57)</option>
+      <option value="+269">🇰🇲 Comoros (+269)</option>
+      <option value="+242">🇨🇬 Congo (+242)</option>
+      <option value="+243">🇨🇩 DR Congo (+243)</option>
+      <option value="+682">🇨🇰 Cook Islands (+682)</option>
+      <option value="+506">🇨🇷 Costa Rica (+506)</option>
+      <option value="+385">🇭🇷 Croatia (+385)</option>
+      <option value="+53">🇨🇺 Cuba (+53)</option>
+      <option value="+357">🇨🇾 Cyprus (+357)</option>
+      <option value="+420">🇨🇿 Czech Republic (+420)</option>
+
+      <option value="+45">🇩🇰 Denmark (+45)</option>
+      <option value="+253">🇩🇯 Djibouti (+253)</option>
+      <option value="+1767">🇩🇲 Dominica (+1767)</option>
+      <option value="+1809">🇩🇴 Dominican Republic (+1809)</option>
+
+      <option value="+593">🇪🇨 Ecuador (+593)</option>
+      <option value="+20">🇪🇬 Egypt (+20)</option>
+      <option value="+503">🇸🇻 El Salvador (+503)</option>
+      <option value="+240">🇬🇶 Equatorial Guinea (+240)</option>
+      <option value="+291">🇪🇷 Eritrea (+291)</option>
+      <option value="+372">🇪🇪 Estonia (+372)</option>
+      <option value="+268">🇸🇿 Eswatini (+268)</option>
+      <option value="+251">🇪🇹 Ethiopia (+251)</option>
+
+      <option value="+679">🇫🇯 Fiji (+679)</option>
+      <option value="+358">🇫🇮 Finland (+358)</option>
+      <option value="+33">🇫🇷 France (+33)</option>
+
+      <option value="+241">🇬🇦 Gabon (+241)</option>
+      <option value="+220">🇬🇲 Gambia (+220)</option>
+      <option value="+995">🇬🇪 Georgia (+995)</option>
+      <option value="+49">🇩🇪 Germany (+49)</option>
+      <option value="+233">🇬🇭 Ghana (+233)</option>
+      <option value="+30">🇬🇷 Greece (+30)</option>
+      <option value="+1473">🇬🇩 Grenada (+1473)</option>
+      <option value="+502">🇬🇹 Guatemala (+502)</option>
+      <option value="+224">🇬🇳 Guinea (+224)</option>
+      <option value="+245">🇬🇼 Guinea-Bissau (+245)</option>
+      <option value="+592">🇬🇾 Guyana (+592)</option>
+
+      <option value="+509">🇭🇹 Haiti (+509)</option>
+      <option value="+504">🇭🇳 Honduras (+504)</option>
+      <option value="+852">🇭🇰 Hong Kong (+852)</option>
+      <option value="+36">🇭🇺 Hungary (+36)</option>
+
+      <option value="+354">🇮🇸 Iceland (+354)</option>
+      <option value="+91">🇮🇳 India (+91)</option>
+      <option value="+98">🇮🇷 Iran (+98)</option>
+      <option value="+964">🇮🇶 Iraq (+964)</option>
+      <option value="+353">🇮🇪 Ireland (+353)</option>
+      <option value="+972">🇮🇱 Israel (+972)</option>
+      <option value="+39">🇮🇹 Italy (+39)</option>
+      <option value="+225">🇨🇮 Ivory Coast (+225)</option>
+
+      <option value="+1876">🇯🇲 Jamaica (+1876)</option>
+      <option value="+81">🇯🇵 Japan (+81)</option>
+      <option value="+962">🇯🇴 Jordan (+962)</option>
+
+      <option value="+7">🇰🇿 Kazakhstan (+7)</option>
+      <option value="+254">🇰🇪 Kenya (+254)</option>
+      <option value="+686">🇰🇮 Kiribati (+686)</option>
+      <option value="+965">🇰🇼 Kuwait (+965)</option>
+      <option value="+996">🇰🇬 Kyrgyzstan (+996)</option>
+
+      <option value="+856">🇱🇦 Laos (+856)</option>
+      <option value="+371">🇱🇻 Latvia (+371)</option>
+      <option value="+961">🇱🇧 Lebanon (+961)</option>
+      <option value="+266">🇱🇸 Lesotho (+266)</option>
+      <option value="+231">🇱🇷 Liberia (+231)</option>
+      <option value="+423">🇱🇮 Liechtenstein (+423)</option>
+      <option value="+370">🇱🇹 Lithuania (+370)</option>
+      <option value="+352">🇱🇺 Luxembourg (+352)</option>
+
+      <option value="+853">🇲🇴 Macao (+853)</option>
+      <option value="+261">🇲🇬 Madagascar (+261)</option>
+      <option value="+265">🇲🇼 Malawi (+265)</option>
+      <option value="+60">🇲🇾 Malaysia (+60)</option>
+      <option value="+960">🇲🇻 Maldives (+960)</option>
+      <option value="+223">🇲🇱 Mali (+223)</option>
+      <option value="+356">🇲🇹 Malta (+356)</option>
+      <option value="+692">🇲🇭 Marshall Islands (+692)</option>
+      <option value="+222">🇲🇷 Mauritania (+222)</option>
+      <option value="+230">🇲🇺 Mauritius (+230)</option>
+      <option value="+52">🇲🇽 Mexico (+52)</option>
+      <option value="+691">🇫🇲 Micronesia (+691)</option>
+      <option value="+373">🇲🇩 Moldova (+373)</option>
+      <option value="+377">🇲🇨 Monaco (+377)</option>
+      <option value="+976">🇲🇳 Mongolia (+976)</option>
+      <option value="+382">🇲🇪 Montenegro (+382)</option>
+      <option value="+212">🇲🇦 Morocco (+212)</option>
+      <option value="+258">🇲🇿 Mozambique (+258)</option>
+      <option value="+95">🇲🇲 Myanmar (+95)</option>
+
+      <option value="+264">🇳🇦 Namibia (+264)</option>
+      <option value="+674">🇳🇷 Nauru (+674)</option>
+      <option value="+977">🇳🇵 Nepal (+977)</option>
+      <option value="+31">🇳🇱 Netherlands (+31)</option>
+      <option value="+64">🇳🇿 New Zealand (+64)</option>
+      <option value="+505">🇳🇮 Nicaragua (+505)</option>
+      <option value="+227">🇳🇪 Niger (+227)</option>
+      <option value="+234">🇳🇬 Nigeria (+234)</option>
+      <option value="+683">🇳🇺 Niue (+683)</option>
+      <option value="+850">🇰🇵 North Korea (+850)</option>
+      <option value="+389">🇲🇰 North Macedonia (+389)</option>
+      <option value="+47">🇳🇴 Norway (+47)</option>
+
+      <option value="+968">🇴🇲 Oman (+968)</option>
+
+      <option value="+680">🇵🇼 Palau (+680)</option>
+      <option value="+970">🇵🇸 Palestine (+970)</option>
+      <option value="+507">🇵🇦 Panama (+507)</option>
+      <option value="+675">🇵🇬 Papua New Guinea (+675)</option>
+      <option value="+595">🇵🇾 Paraguay (+595)</option>
+      <option value="+51">🇵🇪 Peru (+51)</option>
+      <option value="+63">🇵🇭 Philippines (+63)</option>
+      <option value="+48">🇵🇱 Poland (+48)</option>
+      <option value="+351">🇵🇹 Portugal (+351)</option>
+
+      <option value="+974">🇶🇦 Qatar (+974)</option>
+
+      <option value="+40">🇷🇴 Romania (+40)</option>
+      <option value="+7">🇷🇺 Russia (+7)</option>
+      <option value="+250">🇷🇼 Rwanda (+250)</option>
+
+      <option value="+685">🇼🇸 Samoa (+685)</option>
+      <option value="+378">🇸🇲 San Marino (+378)</option>
+      <option value="+239">🇸🇹 Sao Tome and Principe (+239)</option>
+      <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+      <option value="+221">🇸🇳 Senegal (+221)</option>
+      <option value="+381">🇷🇸 Serbia (+381)</option>
+      <option value="+248">🇸🇨 Seychelles (+248)</option>
+      <option value="+232">🇸🇱 Sierra Leone (+232)</option>
+      <option value="+65">🇸🇬 Singapore (+65)</option>
+      <option value="+421">🇸🇰 Slovakia (+421)</option>
+      <option value="+386">🇸🇮 Slovenia (+386)</option>
+      <option value="+677">🇸🇧 Solomon Islands (+677)</option>
+      <option value="+252">🇸🇴 Somalia (+252)</option>
+      <option value="+27">🇿🇦 South Africa (+27)</option>
+      <option value="+82">🇰🇷 South Korea (+82)</option>
+      <option value="+211">🇸🇸 South Sudan (+211)</option>
+      <option value="+34">🇪🇸 Spain (+34)</option>
+      <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+      <option value="+249">🇸🇩 Sudan (+249)</option>
+      <option value="+597">🇸🇷 Suriname (+597)</option>
+      <option value="+46">🇸🇪 Sweden (+46)</option>
+      <option value="+41">🇨🇭 Switzerland (+41)</option>
+      <option value="+963">🇸🇾 Syria (+963)</option>
+
+      <option value="+886">🇹🇼 Taiwan (+886)</option>
+      <option value="+992">🇹🇯 Tajikistan (+992)</option>
+      <option value="+255">🇹🇿 Tanzania (+255)</option>
+      <option value="+66">🇹🇭 Thailand (+66)</option>
+      <option value="+228">🇹🇬 Togo (+228)</option>
+      <option value="+676">🇹🇴 Tonga (+676)</option>
+      <option value="+1868">🇹🇹 Trinidad and Tobago (+1868)</option>
+      <option value="+216">🇹🇳 Tunisia (+216)</option>
+      <option value="+90">🇹🇷 Turkey (+90)</option>
+      <option value="+993">🇹🇲 Turkmenistan (+993)</option>
+      <option value="+688">🇹🇻 Tuvalu (+688)</option>
+
+      <option value="+256">🇺🇬 Uganda (+256)</option>
+      <option value="+380">🇺🇦 Ukraine (+380)</option>
+      <option value="+971">🇦🇪 UAE (+971)</option>
+      <option value="+44">🇬🇧 United Kingdom (+44)</option>
+      <option value="+1">🇺🇸 United States (+1)</option>
+      <option value="+598">🇺🇾 Uruguay (+598)</option>
+      <option value="+998">🇺🇿 Uzbekistan (+998)</option>
+
+      <option value="+678">🇻🇺 Vanuatu (+678)</option>
+      <option value="+379">🇻🇦 Vatican City (+379)</option>
+      <option value="+58">🇻🇪 Venezuela (+58)</option>
+      <option value="+84">🇻🇳 Vietnam (+84)</option>
+
+      <option value="+967">🇾🇪 Yemen (+967)</option>
+      <option value="+260">🇿🇲 Zambia (+260)</option>
+      <option value="+263">🇿🇼 Zimbabwe (+263)</option>
+
     </select>
 
-
-    <!-- PHONE -->
     <input
       id="phone"
       type="tel"
@@ -150,832 +371,423 @@
       autocomplete="tel"
     >
 
+  </div>
 
-    <!-- SEND OTP -->
-    <button
-      id="sendButton"
-      onclick="sendOTP()"
+  <button id="sendButton" onclick="sendOTP()">
+    Send OTP
+  </button>
+
+  <div id="recaptcha-container"></div>
+
+  <div id="otpBox" class="hidden">
+
+    <input
+      id="otp"
+      type="text"
+      maxlength="6"
+      inputmode="numeric"
+      placeholder="Enter 6-digit OTP"
     >
-      Send OTP
+
+    <button onclick="verifyOTP()">
+      Verify OTP
     </button>
 
-
-    <!-- RECAPTCHA -->
-    <div id="recaptcha-container"></div>
-
-
-    <!-- OTP -->
-    <div id="otpBox" class="hidden">
-
-      <input
-        id="otp"
-        type="text"
-        maxlength="6"
-        inputmode="numeric"
-        placeholder="Enter 6-digit OTP"
-      >
-
-      <button onclick="verifyOTP()">
-        Verify OTP
-      </button>
-
-      <p id="timer"></p>
-
-    </div>
-
-
-    <!-- MESSAGE -->
-    <p id="message"></p>
-
-
-    <!-- LOGIN / SIGNUP -->
-    <p
-      class="link"
-      onclick="toggleMode()"
-      id="toggleText"
-    >
-      Already have an account? Login
-    </p>
+    <p id="timer"></p>
 
   </div>
 
+  <p id="message"></p>
 
-  <!-- DASHBOARD -->
-  <div class="card hidden" id="dashboard">
-
-    <h2>Welcome 🎉</h2>
-
-    <p>
-      Your phone number has been verified successfully.
-    </p>
-
-    <p id="userPhone"></p>
-
-  </div>
+  <p
+    class="link"
+    onclick="toggleMode()"
+    id="toggleText"
+  >
+    Already have an account? Login
+  </p>
 
 </div>
 
 
-<!-- FIREBASE -->
+<!-- DASHBOARD -->
+<div class="card hidden" id="dashboard">
+
+  <h2>Welcome 🎉</h2>
+
+  <p>
+    Your phone number has been verified successfully.
+  </p>
+
+</div>
+
+</div>
+
+
 <script type="module">
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-  import {
-    getAuth,
-    RecaptchaVerifier,
-    signInWithPhoneNumber
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-  /*
-  ==================================================
-  FIREBASE CONFIG
-  ==================================================
-
-  YAHAN APNA ACTUAL FIREBASE CONFIG PASTE KAREIN.
-
-  Firebase Console:
-  Project settings
-  → General
-  → Your apps
-  → Web app
-  → SDK setup and configuration
-  → Config
-
-  ==================================================
-  */
-
-
-  const firebaseConfig = {
-
-    apiKey: "YOUR_API_KEY",
-
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-
-    projectId: "YOUR_PROJECT_ID",
-
-    storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-
-    appId: "YOUR_APP_ID"
-
-  };
-
-
-  /*
-  ==================================================
-  INITIALIZE FIREBASE
-  ==================================================
-  */
-
-  const app =
-    initializeApp(firebaseConfig);
-
-
-  const auth =
-    getAuth(app);
-
-
-  /*
-  ==================================================
-  COUNTRIES
-  ==================================================
-  */
-
-  const countries = [
-
-    ["Afghanistan", "+93", "🇦🇫"],
-    ["Albania", "+355", "🇦🇱"],
-    ["Algeria", "+213", "🇩🇿"],
-    ["Andorra", "+376", "🇦🇩"],
-    ["Angola", "+244", "🇦🇴"],
-    ["Antigua and Barbuda", "+1", "🇦🇬"],
-    ["Argentina", "+54", "🇦🇷"],
-    ["Armenia", "+374", "🇦🇲"],
-    ["Australia", "+61", "🇦🇺"],
-    ["Austria", "+43", "🇦🇹"],
-    ["Azerbaijan", "+994", "🇦🇿"],
-
-    ["Bahamas", "+1", "🇧🇸"],
-    ["Bahrain", "+973", "🇧🇭"],
-    ["Bangladesh", "+880", "🇧🇩"],
-    ["Barbados", "+1", "🇧🇧"],
-    ["Belarus", "+375", "🇧🇾"],
-    ["Belgium", "+32", "🇧🇪"],
-    ["Belize", "+501", "🇧🇿"],
-    ["Benin", "+229", "🇧🇯"],
-    ["Bhutan", "+975", "🇧🇹"],
-    ["Bolivia", "+591", "🇧🇴"],
-    ["Bosnia and Herzegovina", "+387", "🇧🇦"],
-    ["Botswana", "+267", "🇧🇼"],
-    ["Brazil", "+55", "🇧🇷"],
-    ["Brunei", "+673", "🇧🇳"],
-    ["Bulgaria", "+359", "🇧🇬"],
-    ["Burkina Faso", "+226", "🇧🇫"],
-    ["Burundi", "+257", "🇧🇮"],
-
-    ["Cabo Verde", "+238", "🇨🇻"],
-    ["Cambodia", "+855", "🇰🇭"],
-    ["Cameroon", "+237", "🇨🇲"],
-    ["Canada", "+1", "🇨🇦"],
-    ["Central African Republic", "+236", "🇨🇫"],
-    ["Chad", "+235", "🇹🇩"],
-    ["Chile", "+56", "🇨🇱"],
-    ["China", "+86", "🇨🇳"],
-    ["Colombia", "+57", "🇨🇴"],
-    ["Comoros", "+269", "🇰🇲"],
-    ["Congo", "+242", "🇨🇬"],
-    ["Costa Rica", "+506", "🇨🇷"],
-    ["Croatia", "+385", "🇭🇷"],
-    ["Cuba", "+53", "🇨🇺"],
-    ["Cyprus", "+357", "🇨🇾"],
-    ["Czech Republic", "+420", "🇨🇿"],
-
-    ["Denmark", "+45", "🇩🇰"],
-    ["Djibouti", "+253", "🇩🇯"],
-    ["Dominica", "+1", "🇩🇲"],
-    ["Dominican Republic", "+1", "🇩🇴"],
-
-    ["Ecuador", "+593", "🇪🇨"],
-    ["Egypt", "+20", "🇪🇬"],
-    ["El Salvador", "+503", "🇸🇻"],
-    ["Equatorial Guinea", "+240", "🇬🇶"],
-    ["Eritrea", "+291", "🇪🇷"],
-    ["Estonia", "+372", "🇪🇪"],
-    ["Eswatini", "+268", "🇸🇿"],
-    ["Ethiopia", "+251", "🇪🇹"],
-
-    ["Fiji", "+679", "🇫🇯"],
-    ["Finland", "+358", "🇫🇮"],
-    ["France", "+33", "🇫🇷"],
-
-    ["Gabon", "+241", "🇬🇦"],
-    ["Gambia", "+220", "🇬🇲"],
-    ["Georgia", "+995", "🇬🇪"],
-    ["Germany", "+49", "🇩🇪"],
-    ["Ghana", "+233", "🇬🇭"],
-    ["Greece", "+30", "🇬🇷"],
-    ["Grenada", "+1", "🇬🇩"],
-    ["Guatemala", "+502", "🇬🇹"],
-    ["Guinea", "+224", "🇬🇳"],
-    ["Guinea-Bissau", "+245", "🇬🇼"],
-    ["Guyana", "+592", "🇬🇾"],
-
-    ["Haiti", "+509", "🇭🇹"],
-    ["Honduras", "+504", "🇭🇳"],
-    ["Hungary", "+36", "🇭🇺"],
-
-    ["Iceland", "+354", "🇮🇸"],
-    ["India", "+91", "🇮🇳"],
-    ["Indonesia", "+62", "🇮🇩"],
-    ["Iran", "+98", "🇮🇷"],
-    ["Iraq", "+964", "🇮🇶"],
-    ["Ireland", "+353", "🇮🇪"],
-    ["Israel", "+972", "🇮🇱"],
-    ["Italy", "+39", "🇮🇹"],
-    ["Ivory Coast", "+225", "🇨🇮"],
-
-    ["Jamaica", "+1", "🇯🇲"],
-    ["Japan", "+81", "🇯🇵"],
-    ["Jordan", "+962", "🇯🇴"],
-
-    ["Kazakhstan", "+7", "🇰🇿"],
-    ["Kenya", "+254", "🇰🇪"],
-    ["Kiribati", "+686", "🇰🇮"],
-    ["Kuwait", "+965", "🇰🇼"],
-    ["Kyrgyzstan", "+996", "🇰🇬"],
-
-    ["Laos", "+856", "🇱🇦"],
-    ["Latvia", "+371", "🇱🇻"],
-    ["Lebanon", "+961", "🇱🇧"],
-    ["Lesotho", "+266", "🇱🇸"],
-    ["Liberia", "+231", "🇱🇷"],
-    ["Libya", "+218", "🇱🇾"],
-    ["Liechtenstein", "+423", "🇱🇮"],
-    ["Lithuania", "+370", "🇱🇹"],
-    ["Luxembourg", "+352", "🇱🇺"],
-
-    ["Madagascar", "+261", "🇲🇬"],
-    ["Malawi", "+265", "🇲🇼"],
-    ["Malaysia", "+60", "🇲🇾"],
-    ["Maldives", "+960", "🇲🇻"],
-    ["Mali", "+223", "🇲🇱"],
-    ["Malta", "+356", "🇲🇹"],
-    ["Marshall Islands", "+692", "🇲🇭"],
-    ["Mauritania", "+222", "🇲🇷"],
-    ["Mauritius", "+230", "🇲🇺"],
-    ["Mexico", "+52", "🇲🇽"],
-    ["Micronesia", "+691", "🇫🇲"],
-    ["Moldova", "+373", "🇲🇩"],
-    ["Monaco", "+377", "🇲🇨"],
-    ["Mongolia", "+976", "🇲🇳"],
-    ["Montenegro", "+382", "🇲🇪"],
-    ["Morocco", "+212", "🇲🇦"],
-    ["Mozambique", "+258", "🇲🇿"],
-    ["Myanmar", "+95", "🇲🇲"],
-
-    ["Namibia", "+264", "🇳🇦"],
-    ["Nauru", "+674", "🇳🇷"],
-    ["Nepal", "+977", "🇳🇵"],
-    ["Netherlands", "+31", "🇳🇱"],
-    ["New Zealand", "+64", "🇳🇿"],
-    ["Nicaragua", "+505", "🇳🇮"],
-    ["Niger", "+227", "🇳🇪"],
-    ["Nigeria", "+234", "🇳🇬"],
-    ["North Korea", "+850", "🇰🇵"],
-    ["North Macedonia", "+389", "🇲🇰"],
-    ["Norway", "+47", "🇳🇴"],
-
-    ["Oman", "+968", "🇴🇲"],
-
-    ["Pakistan", "+92", "🇵🇰"],
-    ["Palau", "+680", "🇵🇼"],
-    ["Palestine", "+970", "🇵🇸"],
-    ["Panama", "+507", "🇵🇦"],
-    ["Papua New Guinea", "+675", "🇵🇬"],
-    ["Paraguay", "+595", "🇵🇾"],
-    ["Peru", "+51", "🇵🇪"],
-    ["Philippines", "+63", "🇵🇭"],
-    ["Poland", "+48", "🇵🇱"],
-    ["Portugal", "+351", "🇵🇹"],
-
-    ["Qatar", "+974", "🇶🇦"],
-
-    ["Romania", "+40", "🇷🇴"],
-    ["Russia", "+7", "🇷🇺"],
-    ["Rwanda", "+250", "🇷🇼"],
-
-    ["Saint Kitts and Nevis", "+1", "🇰🇳"],
-    ["Saint Lucia", "+1", "🇱🇨"],
-    ["Saint Vincent and the Grenadines", "+1", "🇻🇨"],
-    ["Samoa", "+685", "🇼🇸"],
-    ["San Marino", "+378", "🇸🇲"],
-    ["Sao Tome and Principe", "+239", "🇸🇹"],
-    ["Saudi Arabia", "+966", "🇸🇦"],
-    ["Senegal", "+221", "🇸🇳"],
-    ["Serbia", "+381", "🇷🇸"],
-    ["Seychelles", "+248", "🇸🇨"],
-    ["Sierra Leone", "+232", "🇸🇱"],
-    ["Singapore", "+65", "🇸🇬"],
-    ["Slovakia", "+421", "🇸🇰"],
-    ["Slovenia", "+386", "🇸🇮"],
-    ["Solomon Islands", "+677", "🇸🇧"],
-    ["Somalia", "+252", "🇸🇴"],
-    ["South Africa", "+27", "🇿🇦"],
-    ["South Korea", "+82", "🇰🇷"],
-    ["South Sudan", "+211", "🇸🇸"],
-    ["Spain", "+34", "🇪🇸"],
-    ["Sri Lanka", "+94", "🇱🇰"],
-    ["Sudan", "+249", "🇸🇩"],
-    ["Suriname", "+597", "🇸🇷"],
-    ["Sweden", "+46", "🇸🇪"],
-    ["Switzerland", "+41", "🇨🇭"],
-    ["Syria", "+963", "🇸🇾"],
-
-    ["Taiwan", "+886", "🇹🇼"],
-    ["Tajikistan", "+992", "🇹🇯"],
-    ["Tanzania", "+255", "🇹🇿"],
-    ["Thailand", "+66", "🇹🇭"],
-    ["Timor-Leste", "+670", "🇹🇱"],
-    ["Togo", "+228", "🇹🇬"],
-    ["Tonga", "+676", "🇹🇴"],
-    ["Trinidad and Tobago", "+1", "🇹🇹"],
-    ["Tunisia", "+216", "🇹🇳"],
-    ["Turkey", "+90", "🇹🇷"],
-    ["Turkmenistan", "+993", "🇹🇲"],
-    ["Tuvalu", "+688", "🇹🇻"],
-
-    ["Uganda", "+256", "🇺🇬"],
-    ["Ukraine", "+380", "🇺🇦"],
-    ["United Arab Emirates", "+971", "🇦🇪"],
-    ["United Kingdom", "+44", "🇬🇧"],
-    ["United States", "+1", "🇺🇸"],
-    ["Uruguay", "+598", "🇺🇾"],
-    ["Uzbekistan", "+998", "🇺🇿"],
-
-    ["Vanuatu", "+678", "🇻🇺"],
-    ["Vatican City", "+39", "🇻🇦"],
-    ["Venezuela", "+58", "🇻🇪"],
-    ["Vietnam", "+84", "🇻🇳"],
-
-    ["Yemen", "+967", "🇾🇪"],
-
-    ["Zambia", "+260", "🇿🇲"],
-    ["Zimbabwe", "+263", "🇿🇼"]
-
-  ];
-
-
-  /*
-  ==================================================
-  PUT COUNTRIES INTO DROPDOWN
-  ==================================================
-  */
-
-  const countrySelect =
-    document.getElementById("country");
-
-
-  countries.forEach(country => {
-
-    const option =
-      document.createElement("option");
-
-    option.value = country[1];
-
-    option.textContent =
-      country[2] +
-      " " +
-      country[0] +
-      " (" +
-      country[1] +
-      ")";
-
-    countrySelect.appendChild(option);
-
-  });
-
-
-  /*
-  DEFAULT COUNTRY = PAKISTAN
-  */
-
-  countrySelect.value = "+92";
-
-
-  /*
-  ==================================================
-  VARIABLES
-  ==================================================
-  */
-
-  let confirmationResult = null;
-
-  let timer = null;
-
-  let seconds = 30;
-
-  let loginMode = false;
-
-
-  /*
-  ==================================================
-  SHOW AUTH
-  ==================================================
-  */
-
-  window.showAuth = function() {
-
-    document
-      .getElementById("home")
-      .classList.add("hidden");
-
-    document
-      .getElementById("auth")
-      .classList.remove("hidden");
-
-  };
-
-
-  /*
-  ==================================================
-  LOGIN / SIGNUP SWITCH
-  ==================================================
-  */
-
-  window.toggleMode = function() {
-
-    loginMode = !loginMode;
-
-
-    const title =
-      document.getElementById("authTitle");
-
-
-    const nameBox =
-      document.getElementById("nameBox");
-
-
-    const toggle =
-      document.getElementById("toggleText");
-
-
-    if (loginMode) {
-
-      title.textContent = "Login";
-
-      nameBox.classList.add("hidden");
-
-      toggle.textContent =
-        "Don't have an account? Sign Up";
-
-    } else {
-
-      title.textContent = "Sign Up";
-
-      nameBox.classList.remove("hidden");
-
-      toggle.textContent =
-        "Already have an account? Login";
-
-    }
-
-  };
-
-
-  /*
-  ==================================================
-  CREATE RECAPTCHA
-  ==================================================
-  */
-
-  function createRecaptcha() {
-
-    if (window.recaptchaVerifier) {
-      return;
-    }
-
-
-    window.recaptchaVerifier =
-      new RecaptchaVerifier(
-        auth,
-        "recaptcha-container",
-        {
-          size: "normal"
-        }
-      );
+
+/* =========================================
+   YOUR FIREBASE CONFIG
+   ========================================= */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBl8m6ic9j5n2YrSUD08A0kykOTnAt-2v0",
+
+  authDomain: "my-website-2b5f6.firebaseapp.com",
+
+  projectId: "my-website-2b5f6",
+
+  storageBucket: "my-website-2b5f6.firebasestorage.app",
+
+  messagingSenderId: "642649037067",
+
+  appId: "1:642649037067:web:e565a05695af3a76da2a0e",
+
+  measurementId: "G-NP33YW9JHC"
+
+};
+
+
+/* FIREBASE START */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+let confirmationResult = null;
+let timer = null;
+let seconds = 30;
+let loginMode = false;
+
+
+/* SHOW AUTH */
+
+window.showAuth = function(){
+
+  document.getElementById("home")
+    .classList.add("hidden");
+
+  document.getElementById("auth")
+    .classList.remove("hidden");
+
+};
+
+
+/* LOGIN / SIGNUP */
+
+window.toggleMode = function(){
+
+  loginMode = !loginMode;
+
+  const title =
+    document.getElementById("authTitle");
+
+  const nameBox =
+    document.getElementById("nameBox");
+
+  const toggle =
+    document.getElementById("toggleText");
+
+
+  if(loginMode){
+
+    title.textContent = "Login";
+
+    nameBox.classList.add("hidden");
+
+    toggle.textContent =
+      "Don't have an account? Sign Up";
+
+  }else{
+
+    title.textContent = "Sign Up";
+
+    nameBox.classList.remove("hidden");
+
+    toggle.textContent =
+      "Already have an account? Login";
+
+  }
+
+};
+
+
+/* RECAPTCHA */
+
+function createRecaptcha(){
+
+  if(window.recaptchaVerifier){
+    return;
+  }
+
+  window.recaptchaVerifier =
+    new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {
+        size:"normal"
+      }
+    );
+
+}
+
+
+/* SEND OTP */
+
+window.sendOTP = async function(){
+
+  const country =
+    document.getElementById("country").value;
+
+  let phone =
+    document.getElementById("phone")
+      .value.trim();
+
+  const message =
+    document.getElementById("message");
+
+  const button =
+    document.getElementById("sendButton");
+
+
+  if(!phone){
+
+    message.textContent =
+      "Please enter your phone number.";
+
+    return;
 
   }
 
 
   /*
-  ==================================================
-  SEND OTP
-  ==================================================
+    Remove spaces, brackets, dashes
   */
 
-  window.sendOTP = async function() {
-
-    const country =
-      document.getElementById("country").value;
+  phone =
+    phone.replace(/[^\d]/g,"");
 
 
-    const phone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
+  /*
+    Remove leading zero
+  */
+
+  phone =
+    phone.replace(/^0+/,"");
 
 
-    const message =
-      document.getElementById("message");
+  const fullPhone =
+    country + phone;
 
 
-    const button =
-      document.getElementById("sendButton");
+  /*
+    E.164 basic check
+  */
 
-
-    /*
-    PHONE CHECK
-    */
-
-    if (!phone) {
-
-      message.textContent =
-        "Please enter your phone number.";
-
-      return;
-
-    }
-
-
-    /*
-    REMOVE LEADING ZERO
-    */
-
-    const cleanPhone =
-      phone.replace(/^0+/, "");
-
-
-    /*
-    FULL INTERNATIONAL NUMBER
-    */
-
-    const fullPhone =
-      country + cleanPhone;
-
-
-    console.log(
-      "Phone:",
-      fullPhone
-    );
-
-
-    button.disabled = true;
+  if(!/^\+\d{8,15}$/.test(fullPhone)){
 
     message.textContent =
-      "Sending OTP...";
+      "Please enter a valid phone number.";
+
+    return;
+
+  }
 
 
-    try {
+  button.disabled = true;
 
-      /*
-      CREATE RECAPTCHA
-      */
-
-      createRecaptcha();
+  message.textContent =
+    "Sending OTP...";
 
 
-      /*
-      SEND OTP
-      */
+  try{
 
-      confirmationResult =
-        await signInWithPhoneNumber(
-          auth,
-          fullPhone,
-          window.recaptchaVerifier
-        );
+    createRecaptcha();
 
 
-      /*
-      SHOW OTP BOX
-      */
-
-      document
-        .getElementById("otpBox")
-        .classList.remove("hidden");
-
-
-      message.textContent =
-        "OTP sent. Check your SMS.";
-
-
-      startTimer();
-
-
-    } catch (error) {
-
-      console.error(
-        "Firebase OTP Error:",
-        error
+    confirmationResult =
+      await signInWithPhoneNumber(
+        auth,
+        fullPhone,
+        window.recaptchaVerifier
       );
 
 
-      message.textContent =
-        error.message ||
-        "Unable to send OTP.";
+    document.getElementById("otpBox")
+      .classList.remove("hidden");
 
 
-      button.disabled = false;
+    message.textContent =
+      "OTP sent. Check your SMS.";
 
 
-      /*
-      RESET RECAPTCHA
-      */
+    startTimer();
 
-      if (window.recaptchaVerifier) {
 
-        try {
+  }catch(error){
 
-          window.recaptchaVerifier.clear();
+    console.error(error);
 
-        } catch (e) {
+    message.textContent =
+      "Firebase error: " +
+      error.message;
 
-          console.log(e);
 
-        }
+    button.disabled = false;
+
+
+    /*
+      Reset reCAPTCHA after error
+    */
+
+    try{
+
+      if(window.recaptchaVerifier){
+
+        window.recaptchaVerifier.clear();
 
         window.recaptchaVerifier = null;
 
       }
 
+    }catch(e){}
+
+  }
+
+};
+
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timer);
+
+  seconds = 30;
+
+  const timerText =
+    document.getElementById("timer");
+
+  const button =
+    document.getElementById("sendButton");
+
+
+  timerText.textContent =
+    "Resend available in "
+    + seconds
+    + " seconds";
+
+
+  timer = setInterval(function(){
+
+    seconds--;
+
+
+    if(seconds > 0){
+
+      timerText.textContent =
+        "Resend available in "
+        + seconds
+        + " seconds";
+
     }
 
-  };
+
+    if(seconds <= 0){
+
+      clearInterval(timer);
+
+      timerText.textContent =
+        "You can request another OTP.";
+
+      button.disabled = false;
+
+      button.textContent =
+        "Send OTP Again";
+
+    }
+
+  },1000);
+
+}
 
 
-  /*
-  ==================================================
-  TIMER
-  ==================================================
-  */
+/* VERIFY OTP */
 
-  function startTimer() {
+window.verifyOTP = async function(){
 
-    clearInterval(timer);
+  const otp =
+    document.getElementById("otp")
+      .value.trim();
 
-    seconds = 30;
-
-
-    const timerText =
-      document.getElementById("timer");
+  const message =
+    document.getElementById("message");
 
 
-    const button =
-      document.getElementById("sendButton");
+  if(!/^[0-9]{6}$/.test(otp)){
 
+    message.textContent =
+      "Enter the 6-digit OTP.";
 
-    timerText.textContent =
-      "Resend available in " +
-      seconds +
-      " seconds";
-
-
-    timer =
-      setInterval(() => {
-
-        seconds--;
-
-
-        if (seconds > 0) {
-
-          timerText.textContent =
-            "Resend available in " +
-            seconds +
-            " seconds";
-
-        }
-
-
-        if (seconds <= 0) {
-
-          clearInterval(timer);
-
-
-          timerText.textContent =
-            "You can request another OTP.";
-
-
-          button.disabled = false;
-
-
-          button.textContent =
-            "Send OTP Again";
-
-        }
-
-      }, 1000);
+    return;
 
   }
 
 
-  /*
-  ==================================================
-  VERIFY OTP
-  ==================================================
-  */
+  if(!confirmationResult){
 
-  window.verifyOTP = async function() {
+    message.textContent =
+      "Please request an OTP first.";
 
-    const otp =
-      document
-        .getElementById("otp")
-        .value
-        .trim();
+    return;
+
+  }
 
 
-    const message =
-      document.getElementById("message");
+  try{
+
+    message.textContent =
+      "Verifying OTP...";
 
 
-    /*
-    CHECK OTP
-    */
-
-    if (!/^[0-9]{6}$/.test(otp)) {
-
-      message.textContent =
-        "Enter the 6-digit OTP.";
-
-      return;
-
-    }
+    await confirmationResult.confirm(otp);
 
 
-    /*
-    CHECK REQUEST
-    */
+    document.getElementById("auth")
+      .classList.add("hidden");
 
-    if (!confirmationResult) {
-
-      message.textContent =
-        "Please request an OTP first.";
-
-      return;
-
-    }
+    document.getElementById("dashboard")
+      .classList.remove("hidden");
 
 
-    try {
-
-      message.textContent =
-        "Verifying...";
+    message.textContent = "";
 
 
-      /*
-      VERIFY OTP
-      */
+  }catch(error){
 
-      const result =
-        await confirmationResult.confirm(otp);
+    console.error(error);
 
+    message.textContent =
+      "Incorrect or expired OTP.";
 
-      /*
-      GET USER
-      */
+  }
 
-      const user =
-        result.user;
-
-
-      /*
-      HIDE AUTH
-      */
-
-      document
-        .getElementById("auth")
-        .classList.add("hidden");
-
-
-      /*
-      SHOW DASHBOARD
-      */
-
-      document
-        .getElementById("dashboard")
-        .classList.remove("hidden");
-
-
-      /*
-      SHOW VERIFIED PHONE
-      */
-
-      document
-        .getElementById("userPhone")
-        .textContent =
-        "Verified number: " +
-        user.phoneNumber;
-
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      message.textContent =
-        "Incorrect or expired OTP.";
-
-    }
-
-  };
+};
 
 </script>
 
 </body>
-  </html>
+                              </html>
