@@ -24,9 +24,9 @@
       padding: 30px 15px;
     }
 
-    main {
+    .container {
       max-width: 500px;
-      margin: 50px auto;
+      margin: 45px auto;
       padding: 20px;
     }
 
@@ -35,24 +35,23 @@
       padding: 30px;
       border-radius: 16px;
       box-shadow: 0 5px 20px rgba(0,0,0,.08);
-      text-align: center;
     }
 
-    input {
+    input, select {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       margin: 8px 0;
       border: 1px solid #d1d5db;
-      border-radius: 9px;
+      border-radius: 8px;
       font-size: 16px;
     }
 
     button {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       margin-top: 10px;
       border: 0;
-      border-radius: 9px;
+      border-radius: 8px;
       background: #2563eb;
       color: white;
       font-size: 16px;
@@ -68,13 +67,24 @@
       display: none;
     }
 
+    .link {
+      color: #2563eb;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
     #message {
       min-height: 25px;
       margin-top: 15px;
     }
 
     #timer {
+      text-align: center;
       color: #555;
+    }
+
+    #recaptcha-container {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -86,34 +96,51 @@
   <p>Welcome to our online service</p>
 </header>
 
-<main>
+<div class="container">
 
   <!-- HOME -->
   <div class="card" id="home">
     <h2>Welcome</h2>
-    <p>Click below to create your account.</p>
+    <p>Get started with your account.</p>
 
-    <button onclick="openSignup()">
+    <button onclick="showAuth()">
       Get Started
     </button>
   </div>
 
 
-  <!-- SIGN UP -->
-  <div class="card hidden" id="signup">
+  <!-- LOGIN / SIGNUP -->
+  <div class="card hidden" id="auth">
 
-    <h2>Create Account</h2>
+    <h2 id="authTitle">Sign Up</h2>
 
-    <input
-      id="name"
-      type="text"
-      placeholder="Full name"
-    >
+    <div id="nameBox">
+      <input
+        id="name"
+        type="text"
+        placeholder="Full name"
+      >
+    </div>
+
+    <select id="country">
+      <option value="+92">Pakistan (+92)</option>
+      <option value="+1">United States / Canada (+1)</option>
+      <option value="+44">United Kingdom (+44)</option>
+      <option value="+91">India (+91)</option>
+      <option value="+971">UAE (+971)</option>
+      <option value="+966">Saudi Arabia (+966)</option>
+      <option value="+61">Australia (+61)</option>
+      <option value="+49">Germany (+49)</option>
+      <option value="+33">France (+33)</option>
+      <option value="+81">Japan (+81)</option>
+      <option value="+86">China (+86)</option>
+    </select>
 
     <input
       id="phone"
       type="tel"
-      placeholder="+92 3XXXXXXXXX"
+      placeholder="Phone number"
+      autocomplete="tel"
     >
 
     <button
@@ -123,15 +150,15 @@
       Send OTP
     </button>
 
-    <p id="timer"></p>
+    <div id="recaptcha-container"></div>
 
-    <div id="otpArea" class="hidden">
+    <div id="otpBox" class="hidden">
 
       <input
         id="otp"
         type="text"
-        inputmode="numeric"
         maxlength="6"
+        inputmode="numeric"
         placeholder="Enter 6-digit OTP"
       >
 
@@ -139,9 +166,19 @@
         Verify OTP
       </button>
 
+      <p id="timer"></p>
+
     </div>
 
     <p id="message"></p>
+
+    <p
+      class="link"
+      onclick="toggleMode()"
+      id="toggleText"
+    >
+      Already have an account? Login
+    </p>
 
   </div>
 
@@ -152,42 +189,142 @@
     <h2>Welcome 🎉</h2>
 
     <p>
-      Your phone number has been successfully verified.
+      Your phone number has been verified.
     </p>
 
   </div>
 
-</main>
+</div>
 
 
-<script>
+<!-- Firebase -->
+<script type="module">
 
-let countdown;
-let seconds = 7;
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-/* GET STARTED */
+/*
+==================================================
+PUT YOUR FIREBASE CONFIG HERE
+==================================================
+*/
 
-function openSignup() {
+const firebaseConfig = {
+
+  apiKey: "YOUR_API_KEY",
+
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+
+  projectId: "YOUR_PROJECT_ID",
+
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
+
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+  appId: "YOUR_APP_ID"
+
+};
+
+
+const app =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(app);
+
+
+let confirmationResult = null;
+let timer = null;
+let seconds = 30;
+let loginMode = false;
+
+
+/* SHOW LOGIN / SIGNUP */
+
+window.showAuth = function() {
 
   document.getElementById("home")
     .classList.add("hidden");
 
-  document.getElementById("signup")
+  document.getElementById("auth")
     .classList.remove("hidden");
+
+};
+
+
+/* LOGIN / SIGNUP SWITCH */
+
+window.toggleMode = function() {
+
+  loginMode = !loginMode;
+
+  const title =
+    document.getElementById("authTitle");
+
+  const nameBox =
+    document.getElementById("nameBox");
+
+  const toggle =
+    document.getElementById("toggleText");
+
+
+  if (loginMode) {
+
+    title.textContent = "Login";
+
+    nameBox.classList.add("hidden");
+
+    toggle.textContent =
+      "Don't have an account? Sign Up";
+
+  } else {
+
+    title.textContent = "Sign Up";
+
+    nameBox.classList.remove("hidden");
+
+    toggle.textContent =
+      "Already have an account? Login";
+
+  }
+
+};
+
+
+/* RECAPTCHA */
+
+function createRecaptcha() {
+
+  window.recaptchaVerifier =
+    new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {
+        size: "normal"
+      }
+    );
 
 }
 
 
 /* SEND OTP */
 
-async function sendOTP() {
+window.sendOTP = async function() {
 
-  const name =
-    document.getElementById("name").value.trim();
+  const country =
+    document.getElementById("country").value;
 
   const phone =
-    document.getElementById("phone").value.trim();
+    document.getElementById("phone")
+      .value.trim();
 
   const message =
     document.getElementById("message");
@@ -196,22 +333,18 @@ async function sendOTP() {
     document.getElementById("sendButton");
 
 
-  if (!name) {
-
-    message.textContent =
-      "Please enter your name.";
-
-    return;
-  }
-
-
   if (!phone) {
 
     message.textContent =
       "Please enter your phone number.";
 
     return;
+
   }
+
+
+  const fullPhone =
+    country + phone.replace(/^0+/, "");
 
 
   button.disabled = true;
@@ -222,35 +355,20 @@ async function sendOTP() {
 
   try {
 
-    const response = await fetch("/api/send-otp", {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        name: name,
-        phone: phone
-      })
-
-    });
-
-
-    const data = await response.json();
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        data.error || "Could not send OTP."
-      );
-
+    if (!window.recaptchaVerifier) {
+      createRecaptcha();
     }
 
 
-    document.getElementById("otpArea")
+    confirmationResult =
+      await signInWithPhoneNumber(
+        auth,
+        fullPhone,
+        window.recaptchaVerifier
+      );
+
+
+    document.getElementById("otpBox")
       .classList.remove("hidden");
 
 
@@ -258,66 +376,66 @@ async function sendOTP() {
       "OTP sent. Check your SMS.";
 
 
-    startTimer(
-      data.retryAfter || 7
-    );
+    startTimer();
 
 
   } catch (error) {
 
+    console.error(error);
+
     message.textContent =
-      error.message;
+      error.message ||
+      "Unable to send OTP.";
 
     button.disabled = false;
 
   }
 
-}
+};
 
 
-/* TIMER */
+/* 30 SECOND TIMER */
 
-function startTimer(secondsLeft) {
+function startTimer() {
 
-  clearInterval(countdown);
+  clearInterval(timer);
+
+  seconds = 30;
+
+  const timerText =
+    document.getElementById("timer");
 
   const button =
     document.getElementById("sendButton");
 
-  const timer =
-    document.getElementById("timer");
 
-  let remaining = secondsLeft;
-
-  button.disabled = true;
-
-
-  timer.textContent =
-    "You can request another OTP in "
-    + remaining
-    + " seconds.";
+  timerText.textContent =
+    "Resend available in "
+    + seconds
+    + " seconds";
 
 
-  countdown = setInterval(function() {
+  timer = setInterval(() => {
 
-    remaining--;
+    seconds--;
 
 
-    if (remaining > 0) {
+    if (seconds > 0) {
 
-      timer.textContent =
-        "You can request another OTP in "
-        + remaining
-        + " seconds.";
+      timerText.textContent =
+        "Resend available in "
+        + seconds
+        + " seconds";
 
     }
 
 
-    if (remaining <= 0) {
+    if (seconds <= 0) {
 
-      clearInterval(countdown);
+      clearInterval(timer);
 
-      timer.textContent = "";
+      timerText.textContent =
+        "You can request another OTP.";
 
       button.disabled = false;
 
@@ -333,13 +451,11 @@ function startTimer(secondsLeft) {
 
 /* VERIFY OTP */
 
-async function verifyOTP() {
-
-  const phone =
-    document.getElementById("phone").value.trim();
+window.verifyOTP = async function() {
 
   const otp =
-    document.getElementById("otp").value.trim();
+    document.getElementById("otp")
+      .value.trim();
 
   const message =
     document.getElementById("message");
@@ -348,49 +464,34 @@ async function verifyOTP() {
   if (!/^[0-9]{6}$/.test(otp)) {
 
     message.textContent =
-      "Enter a valid 6-digit OTP.";
+      "Enter the 6-digit OTP.";
 
     return;
+
+  }
+
+
+  if (!confirmationResult) {
+
+    message.textContent =
+      "Please request an OTP first.";
+
+    return;
+
   }
 
 
   try {
 
-    const response = await fetch(
-      "/api/verify-otp",
-      {
-
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          phone: phone,
-          otp: otp
-        })
-
-      }
-    );
+    message.textContent =
+      "Verifying...";
 
 
-    const data =
-      await response.json();
+    await confirmationResult.confirm(otp);
 
 
-    if (!response.ok) {
-
-      throw new Error(
-        data.error || "Verification failed."
-      );
-
-    }
-
-
-    document.getElementById("signup")
+    document.getElementById("auth")
       .classList.add("hidden");
-
 
     document.getElementById("dashboard")
       .classList.remove("hidden");
@@ -398,14 +499,16 @@ async function verifyOTP() {
 
   } catch (error) {
 
+    console.error(error);
+
     message.textContent =
-      error.message;
+      "Incorrect or expired OTP.";
 
   }
 
-}
+};
 
 </script>
 
 </body>
-      </html>
+  </html>
